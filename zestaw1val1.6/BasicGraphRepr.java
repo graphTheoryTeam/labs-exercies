@@ -88,32 +88,6 @@ class BasicGraphRepr{
 	return false;
     }
 
-    //(*(*(*(*(*(*(*(*(*()*)*)*)*)*)*)*)*
-    // SECOND SET
-    //(*(*(*(*(*(*(*(*(*()*)*)*)*)*)*)*)*
-    //
-    // checking if it is hamilton's graph
-    //  Jeśli graf prosty o n wierzchołkach ma co najmniej m krawędzi, gdzie:
-    //  m = 0.5 * (n - 1)(n - 2) + 2
-    //  to jest hamiltonowski
-    //  A Hamiltonian graph, also called a Hamilton graph,
-    //  is a graph possessing a Hamiltonian cycle.
-    //  A graph that is not Hamiltonian is said to be nonhamiltonian. 
-    public void check_if_its_hamiltonian(){
-         float n = get_amount_of_vertices();
-         float m = get_amount_of_edges();
-        if (m == (0.5 * (n - 1) * (n - 2) + 2)){
-            System.out.println("*************************");
-            System.out.println("It is hamiltonian graph!");
-            System.out.println("*************************");
-        }
-        else{
-            System.out.println("*************************");
-            System.out.println("It is nonhamiltionian graph!!");
-            System.out.println("*************************");
-        }
-    }
-
     /**Search biggest connected component*/  
     BasicGraphRepr BiggestConnectedComponent()
     {
