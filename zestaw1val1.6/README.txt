@@ -1,4 +1,3 @@
-# labs-exercies
 class hierarchy:
 
              BasicGraphRepresentation - contains class Edge
