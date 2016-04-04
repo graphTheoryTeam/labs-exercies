@@ -1,6 +1,7 @@
 class Edge{
-    private int v1;
-    private int v2;
+    int weight;
+    int v1;
+    int v2;
     public Edge(int vertex1, int vertex2){
             v1 = vertex1;
             v2 = vertex2;
