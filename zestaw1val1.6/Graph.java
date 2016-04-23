@@ -1,3 +1,4 @@
+import java.util.*;
 abstract class Graph{
     protected BasicGraphRepr _b_g_r;
     private int _vertices_number;
@@ -32,8 +33,5 @@ abstract class Graph{
     }
     public int get_edges_number(){
         return _edges_number;
-    }
-    public  BasicGraphRepr push_to_print(){
-        return _b_g_r;
     }
 }

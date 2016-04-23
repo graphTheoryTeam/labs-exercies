@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 class Main2{
     public static void main(String args[]){
 		
@@ -11,21 +12,34 @@ class Main2{
         int l = input.nextInt();
         
 		BasicGraphRepr g2 = graphExample_Regular.generateRandomRegularGraph(n,l);
-		
         System.out.println("BasicGraphRepr for G(n,d): ");
 
         AdjadencyMatrixRepr am = new AdjadencyMatrixRepr(g2);
 
         System.out.println();
         HamiltonianCycle ham = new HamiltonianCycle();
-        ham.hamCycle(am.get_adj_mtrx(), am.get_vertices_number());
+        // if it is hamiltionian graph it will be printed  
+        if (ham.hamCycle(am.get_adj_mtrx(), am.get_vertices_number())){
+           g2.setHamCycle(ham.returnSolution());
+           try{
+                g2.write_to_file_and_print();
+              }
+            catch(IOException e)
+            {
+                 System.out.print("Cos... cos sie zepsulo :( "); 
+            }
+        }
+ 
+
         System.out.println();
+       		
+        
 
         g2.print_vertices();
 
         g2.print_edges();
 
-
+        /*
         am.print_adjadency_matrix();
         System.out.println();
 
@@ -56,15 +70,17 @@ class Main2{
 
         im.transform_to_adjadency_matrix();
         System.out.println();
-		
+	*/	
 		//  \/  Ciagi graficzne i konstruowanie grafu z ciagu  \/
 		
 		GraphicSequence gs = new GraphicSequence();			
 		BasicGraphRepr g3 = gs.checkSequenceAndConstruct();
+        /*
 		if(g3 != null){
 			g3.print_vertices();
 			g3.print_edges();
 		}
+        */
         AdjadencyMatrixRepr am2 = new AdjadencyMatrixRepr(g3);
 
         ham.hamCycle(am2.get_adj_mtrx(), am2.get_vertices_number());

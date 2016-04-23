@@ -73,7 +73,7 @@ class HamiltonianCycle
        problem. It returns false if there is no Hamiltonian Cycle
        possible, otherwise return true and prints the path.
        This function prints one of the feasible solutions. */
-    int hamCycle(int graph[][], int size)
+    boolean hamCycle(int graph[][], int size)
     {
         path = new int[size];
         final int V = size;
@@ -88,11 +88,11 @@ class HamiltonianCycle
         if (hamCycleRecursiveFinder(graph, path, 1, V) == false)
         {
             System.out.println("\nIt is not hamiltionian graph!");
-            return 0;
+            return false;
         }
  
         printSolution(path, V);
-        return 1;
+        return true;
     }
  
     /* A utility function to print solution */
@@ -106,5 +106,8 @@ class HamiltonianCycle
         // Let us print the first vertex again to show the
         // complete cycle
         System.out.println(" " + path[0] + " ");
+    }
+    int[] returnSolution(){
+        return path; 
     }
 } 
