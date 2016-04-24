@@ -63,43 +63,12 @@ class BasicGraphRepr{
     public void setHamCycle(int cycle[]){
             hamCycle = cycle; 
     }
-
-    public void write_to_file_and_print_with_cycle() throws IOException{
-        PrintWriter writer = new PrintWriter("print.txt");
-        System.out.println(hamCycle[0]);
-        for (int v : hamCycle)
-            writer.println(v);
-        writer.println("#");
-
-        for (int v : list_of_vertices)
-            writer.println(v);
-        writer.println("#");
-
-        for (Edge e : list_of_edges){
-            writer.println(e.get_v(0));
-            writer.println(e.get_v(1));
-        }
-        writer.println("#");
-        writer.close();
-        ProcessBuilder pb = new ProcessBuilder("python","printing_cycle.py");
-        Process p = pb.start();
+    public int[] get_hamCycle()
+    {
+        return hamCycle;
     }
-    public void write_to_file_and_print() throws IOException{
-        PrintWriter writer = new PrintWriter("print.txt");
-        for (int v : list_of_vertices)
-            writer.println(v);
-        writer.println("#");
 
-        for (Edge e : list_of_edges){
-            writer.println(e.get_v(0));
-            writer.println(e.get_v(1));
-        }
-        writer.println("#");
-        writer.close();
-        ProcessBuilder pb = new ProcessBuilder("python","printing.py");
-        Process p = pb.start();
-    }
-    /*public void set_degrees_of_vertices()*/
+       /*public void set_degrees_of_vertices()*/
   
     public void print_edges(){
         System.out.println("---------------------EDGES-------------------");

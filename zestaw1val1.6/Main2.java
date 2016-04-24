@@ -20,9 +20,9 @@ class Main2{
         HamiltonianCycle ham = new HamiltonianCycle();
         // if it is hamiltionian graph it will be printed  
         if (ham.hamCycle(am.get_adj_mtrx(), am.get_vertices_number())){
-           g2.setHamCycle(ham.returnSolution());
+           am.get_b_g_r().setHamCycle(ham.returnSolution());
            try{
-                g2.write_to_file_and_print_with_cycle();
+                am.write_to_file_and_print_with_cycle();
               }
             catch(IOException e)
             {
@@ -32,7 +32,7 @@ class Main2{
         else
         {
             try{
-                g2.write_to_file_and_print();
+                am.write_to_file_and_print();
               }
             catch(IOException e)
             {

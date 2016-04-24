@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.io.*;
 
 class WeightedGraph extends Graph{
     private ArrayList<Integer> list_of_degrees_of_edges;
@@ -21,10 +22,33 @@ class WeightedGraph extends Graph{
         System.out.println("---------------------EDGES-------------------");
 	int i = 0;
         for (Edge edge: _b_g_r.get_list_of_edges()){
-            System.out.printf("%d %d: %d\n", edge.get_v(0) + 1, edge.get_v(1) + 1,get_degree(i));
+            System.out.printf("%d %d: %d\n", edge.get_v(0), edge.get_v(1), get_degree(i));
 	    i++;
         }
     }
+    public void write_to_file_and_print() throws IOException
+    {
+        PrintWriter writer = new PrintWriter("print.txt");
+
+        for (int v : _b_g_r.get_list_of_vertices())
+            writer.println(v);
+        writer.println("#");
+
+        for (Edge e : _b_g_r.get_list_of_edges()){
+            writer.println(e.get_v(0));
+            writer.println(e.get_v(1));
+        }
+        writer.println("#");
+
+        for (Integer weight : list_of_degrees_of_edges)
+            writer.println(weight); 
+        writer.println("#");
+
+        writer.close();
+        ProcessBuilder pb = new ProcessBuilder("python","printing_weight.py");
+        Process p = pb.start();
+    }
+
 
     public int[][] Dijkstra(int k)
     {

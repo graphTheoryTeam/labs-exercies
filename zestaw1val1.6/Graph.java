@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 abstract class Graph{
     protected BasicGraphRepr _b_g_r;
     private int _vertices_number;
@@ -34,4 +35,39 @@ abstract class Graph{
     public int get_edges_number(){
         return _edges_number;
     }
+    public void write_to_file_and_print_with_cycle() throws IOException{
+        PrintWriter writer = new PrintWriter("print.txt");
+        for (int v : _b_g_r.get_hamCycle())
+            writer.println(v);
+        writer.println("#");
+
+        for (int v : _b_g_r.get_list_of_vertices())
+            writer.println(v);
+        writer.println("#");
+
+        for (Edge e : _b_g_r.get_list_of_edges()){
+            writer.println(e.get_v(0));
+            writer.println(e.get_v(1));
+        }
+        writer.println("#");
+        writer.close();
+        ProcessBuilder pb = new ProcessBuilder("python","printing_cycle.py");
+        Process p = pb.start();
+    }
+    public void write_to_file_and_print() throws IOException{
+        PrintWriter writer = new PrintWriter("print.txt");
+        for (int v : _b_g_r.get_list_of_vertices())
+            writer.println(v);
+        writer.println("#");
+
+        for (Edge e : _b_g_r.get_list_of_edges()){
+            writer.println(e.get_v(0));
+            writer.println(e.get_v(1));
+        }
+        writer.println("#");
+        writer.close();
+        ProcessBuilder pb = new ProcessBuilder("python","printing.py");
+        Process p = pb.start();
+    }
+
 }
