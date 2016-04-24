@@ -22,6 +22,16 @@ class Main2{
         if (ham.hamCycle(am.get_adj_mtrx(), am.get_vertices_number())){
            g2.setHamCycle(ham.returnSolution());
            try{
+                g2.write_to_file_and_print_with_cycle();
+              }
+            catch(IOException e)
+            {
+                 System.out.print("Cos... cos sie zepsulo :( "); 
+            }
+        }
+        else
+        {
+            try{
                 g2.write_to_file_and_print();
               }
             catch(IOException e)
@@ -29,8 +39,6 @@ class Main2{
                  System.out.print("Cos... cos sie zepsulo :( "); 
             }
         }
- 
-
         System.out.println();
        		
         

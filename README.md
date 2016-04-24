@@ -25,3 +25,9 @@ etc.
 
 _+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+
 
+PRINTING GRAPHS:
+use BaseGraphRepr method write_to_file_and_print()
+
+if u want to include some cycle(hamiltonian , euleran) 
+sue BaseGraphRepr method write_to_file_and_print_with_cycle()
+

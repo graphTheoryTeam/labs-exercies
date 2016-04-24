@@ -5,17 +5,17 @@ abstract class Graph{
     private int _edges_number;
     
     public Graph(IncidenceMatrixRepr i_m_r){
-       _b_g_r = new BasicGraphRepr(i_m_r.push_to_print());
+       _b_g_r = new BasicGraphRepr(i_m_r.get_b_g_r());
        _vertices_number = _b_g_r.get_amount_of_vertices();
        _edges_number = _b_g_r.get_amount_of_edges();
     }
     public Graph(AdjadencyListRepr a_l_r){
-       _b_g_r = new BasicGraphRepr(a_l_r.push_to_print());
+       _b_g_r = new BasicGraphRepr(a_l_r.get_b_g_r());
        _vertices_number = _b_g_r.get_amount_of_vertices();
        _edges_number = _b_g_r.get_amount_of_edges();
     }
     public Graph(AdjadencyMatrixRepr a_m_r){
-       _b_g_r = new BasicGraphRepr(a_m_r.push_to_print());
+       _b_g_r = new BasicGraphRepr(a_m_r.get_b_g_r());
        _vertices_number = _b_g_r.get_amount_of_vertices();
        _edges_number = _b_g_r.get_amount_of_edges();
     }
