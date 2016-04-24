@@ -27,6 +27,14 @@ _+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+
 
 PRINTING GRAPHS:
 use BaseGraphRepr method write_to_file_and_print()
+dont forget about catching possible exception!
+	try{
+                g2.write_to_file_and_print_with_cycle();
+              }
+            catch(IOException e)
+            {
+                 System.out.print("Cos... cos sie zepsulo :( "); 
+            }
 
 
 if u want to include some cycle(hamiltonian , euleran) 
