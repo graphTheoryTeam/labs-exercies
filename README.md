@@ -7,7 +7,7 @@ class hierarchy:
 	     Abstract class Graph (contains class BasicGraphRepr)
 	
        /                             |                         \	
-AdjadencyMatrixRepr	          IncidenceMatrixRepr	        AdjadencyListRepr
+AdjadencyMatrixRepr       	          IncidenceMatrixRepr	               AdjadencyListRepr
 
     	\			                 |                        /
 		     
