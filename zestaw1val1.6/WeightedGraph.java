@@ -55,6 +55,35 @@ class WeightedGraph extends Graph{
     }
 
 
+public void write_to_file_and_print2() throws IOException
+    {
+        PrintWriter writer = new PrintWriter("print2.txt");
+
+        /**writing to file particular vertices */
+        for (int v : _b_g_r.get_list_of_vertices())
+            writer.println(v);
+        writer.println("#");
+
+        /**writing to file particular egdes */
+        for (Edge e : _b_g_r.get_list_of_edges()){
+            writer.println(e.get_v(0));
+            writer.println(e.get_v(1));
+        }
+        writer.println("#");
+
+        /**writing to file weights of egdes */
+        for (Integer weight : list_of_degrees_of_edges)
+            writer.println(weight); 
+        writer.println("#");
+
+        writer.close();
+        ProcessBuilder pb = new ProcessBuilder("python","prin.py");
+        Process p = pb.start();
+    }
+
+
+
+
     public int[][] Dijkstra(int k)
     {
 	int[][] temp =  new int[2][get_vertices_number()];
