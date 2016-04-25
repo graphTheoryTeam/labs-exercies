@@ -1,13 +1,7 @@
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Stack;
-import java.util.Random;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
+import java.util.*;
+import java.io.*;
  
-class MinimumSpanningTree{
+public class MinimumSpanningTree{
     private int numberOfVertices;
     private List<Edge> listOfEdges;
     public static final int HIGH_VAL = 999;
@@ -23,6 +17,8 @@ class MinimumSpanningTree{
         int numberOfEdges = scan.nextInt();
         RandomGraph rwg = new RandomGraph();
         WeightedGraph wg = rwg.generateRandomWGraph(numberOfVertices, numberOfEdges);
+
+        
         adjacencyMatrix = new int[numberOfVertices + 1][numberOfVertices + 1];        
         listOfEdges = new LinkedList<Edge>();
         spanningTree = new int[numberOfVertices + 1][numberOfVertices + 1];
@@ -90,7 +86,8 @@ class MinimumSpanningTree{
             if (done)
                 break;
         }
-        System.out.println("Minimalne drzewo rozpinajace zadanego grafu wazonego (pozostale krawedzie zostaly usuniete):");
+
+        System.out.println("Minimalne drzewo rozpinajace zadanego grafu wazonego:");
         for (int i = 1; i <= numberOfVertices; i++)
             System.out.print("\tv" + i);
         System.out.println();
@@ -100,6 +97,56 @@ class MinimumSpanningTree{
                 System.out.print(spanningTree[i][j] + "\t");
             }
             System.out.println();
+        }
+        
+
+	int bl = 0;
+
+	//
+        ArrayList<Integer> ver = new ArrayList<Integer>();
+        ArrayList<Edge> edg = new ArrayList<Edge>();
+        int[] weights = new int[30];
+        int k = 0;
+	int z=0;
+        for(int i = 0; i < numberOfVertices; i++){
+            ver.add(i);
+            for(int j = i; j < numberOfVertices; j++){
+                if(spanningTree[i+1][j+1]!=0) {
+                    edg.add(new Edge(i,j)); 
+                    weights[k] = spanningTree[i+1][j+1];
+                    k++;
+		    bl++;
+		}
+            }
+        }
+int u = k;
+
+        BasicGraphRepr b = new BasicGraphRepr(edg,ver);
+        WeightedGraph w = new WeightedGraph(b);
+        for(int i=0;i<w.get_edges_number();i++)
+        {w.set_degree(i,weights[i]);}
+
+
+
+        
+        try
+        {
+            wg.write_to_file_and_print();
+        }
+        catch(IOException e)
+        {
+            System.out.print("Cos... cos sie zepsulo Emotikon frown "); 
+        }
+        
+
+
+        try
+        {
+            w.write_to_file_and_print2();
+        }
+        catch(IOException e)
+        {
+            System.out.print("Cos... cos sie zepsulo Emotikon frown "); 
         }
     }
 
@@ -144,6 +191,11 @@ class MinimumSpanningTree{
         }
         return hasCycle;
     }
+
+    public static void main(String... arg){
+        MinimumSpanningTree mst = new MinimumSpanningTree();
+        mst.KruskalAlgorithm();
+    }
 }
 
 class EdgeComparator implements Comparator<Edge>{
@@ -154,4 +206,4 @@ class EdgeComparator implements Comparator<Edge>{
             return -1;
         return 0;
     }
-} 
+}
