@@ -3,10 +3,12 @@ import java.io.*;
 
 class WeightedGraph extends Graph{
     private ArrayList<Integer> list_of_degrees_of_edges;
+    private int[][] distance_matrix;
 
     public WeightedGraph(BasicGraphRepr b_g_r){
         super(b_g_r);
         list_of_degrees_of_edges = new ArrayList<Integer>();
+        distance_matrix = new int[this.get_vertices_number()][this.get_vertices_number()];
 	for(int i = 0;i < get_edges_number();i++)
 		list_of_degrees_of_edges.add(0);
     }
@@ -30,16 +32,19 @@ class WeightedGraph extends Graph{
     {
         PrintWriter writer = new PrintWriter("print.txt");
 
+        /**writing to file particular vertices */
         for (int v : _b_g_r.get_list_of_vertices())
             writer.println(v);
         writer.println("#");
 
+        /**writing to file particular egdes */
         for (Edge e : _b_g_r.get_list_of_edges()){
             writer.println(e.get_v(0));
             writer.println(e.get_v(1));
         }
         writer.println("#");
 
+        /**writing to file weights of egdes */
         for (Integer weight : list_of_degrees_of_edges)
             writer.println(weight); 
         writer.println("#");
@@ -90,5 +95,27 @@ class WeightedGraph extends Graph{
 	}
 	return temp;
     }
-				
+
+    void  create_distance_matrix()
+    {
+        for (int i = 0; i < this.get_vertices_number(); i++)
+        {
+            int [][] temp_tab = this.Dijkstra(i);
+
+            for (int j = 0; j < this.get_vertices_number(); j++)
+                distance_matrix[i][j] = temp_tab[0][j];
+        }
+    }
+    void print_distance_matrix()
+    {
+        System.out.println("Distance matrix: ");
+        for (int i = 0; i < distance_matrix.length; i++)
+        {
+            for (int j = 0; j < distance_matrix.length; j++)
+                System.out.print(distance_matrix[i][j] + " ");
+            System.out.println();
+        }
+    
+    }
+
 }

@@ -34,5 +34,7 @@ class Main3_1{
            System.out.println(); 
         
         }
+        g.create_distance_matrix();
+        g.print_distance_matrix();
     }
 }
