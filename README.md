@@ -26,8 +26,10 @@ etc.
 _+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+
 
 PRINTING GRAPHS:
+
 use Graph method write_to_file_and_print()
 dont forget about catching possible exception!
+
 	try{
                 g.write_to_file_and_print_with_cycle();
               }
@@ -38,6 +40,7 @@ dont forget about catching possible exception!
 
 
 if u want to include some cycle(hamiltonian , euleran)
+
 
 use BaseGraphRepr method write_to_file_and_print_with_cycle()
 
