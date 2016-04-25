@@ -80,11 +80,7 @@ public void write_to_file_and_print2() throws IOException
         ProcessBuilder pb = new ProcessBuilder("python","prin.py");
         Process p = pb.start();
     }
-
-
-
-
-    public int[][] Dijkstra(int k)
+public int[][] Dijkstra(int k)
     {
 	int[][] temp =  new int[2][get_vertices_number()];
 	ArrayList<Integer> Q = new  ArrayList<Integer>();
@@ -92,21 +88,23 @@ public void write_to_file_and_print2() throws IOException
 	{
 		Q.add(_b_g_r.get_vertex(i));
 		temp[1][i]=-1;
-		temp[0][i]=Integer.MAX_VALUE;
+		temp[0][i]=Integer.MAX_VALUE/2;
 	}
 	
 	temp[0][k]=0;
-	int tmp=Integer.MAX_VALUE;
+	int tmp=Integer.MAX_VALUE/2;
 	int index_min = -1;
 	while(Q.size()!=0)
 	{
 		Q.remove((Integer)k);
-		for(Integer i: Q)
-			if(_b_g_r.does_the_edge_is((int)i,k)&&_b_g_r.get_index_edge(i,k)+temp[0][k]<temp[0][i])
-			{
-				temp[0][i] = list_of_degrees_of_edges.get(_b_g_r.get_index_edge(i,k))+temp[0][k];		
-				temp[1][i] = k+1;
+		for(int i=0;i<get_vertices_number();i++){
+			if(_b_g_r.does_the_edge_is(i,(int)k)){
+				if(list_of_degrees_of_edges.get(_b_g_r.get_index_edge(i,(int)k))+temp[0][k]<temp[0][i]){
+					temp[0][i] = list_of_degrees_of_edges.get(_b_g_r.get_index_edge(i,(int)k))+temp[0][k];		
+					temp[1][i] = k+1;
+				}
 			}	
+		}
 		/*for(int i=0;i<temp.length;i++)
 		{
 			for(int j=0;j<temp[0].length;j++)
@@ -120,11 +118,14 @@ public void write_to_file_and_print2() throws IOException
 				index_min=i;
 			}
 		k=index_min;
-		tmp=Integer.MAX_VALUE;
+		tmp=Integer.MAX_VALUE/2;
 	}
 	return temp;
     }
 
+
+
+   
     void  create_distance_matrix()
     {
         for (int i = 0; i < this.get_vertices_number(); i++)
