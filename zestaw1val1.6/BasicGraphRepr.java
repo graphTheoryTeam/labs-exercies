@@ -1,14 +1,16 @@
 import java.util.*;
 import java.io.*;
-class BasicGraphRepr{
+class BasicGraphRepr implements Serializable{
 
     private int[] hamCycle;
     private ArrayList<Edge> list_of_edges;
     private ArrayList<Integer> list_of_vertices;
+    private ArrayList<Vertex> list_of_object_vert;
 	
     public BasicGraphRepr(){
         list_of_edges = new ArrayList<Edge>();
         list_of_vertices = new ArrayList<Integer>();
+        list_of_object_vert = new ArrayList<Vertex>();
     }
     public BasicGraphRepr(BasicGraphRepr b_g_r){
 	list_of_edges = new ArrayList<Edge>();
@@ -27,11 +29,18 @@ class BasicGraphRepr{
     public void add_vertex(int vertex){
         list_of_vertices.add(vertex);
     }
+    public void add_vertex(Vertex vertex){
+        list_of_object_vert.add(vertex);
+    }
      public void add_edge(Edge edge){
         list_of_edges.add(edge);
     }
     public int get_vertex(int index){
         return list_of_vertices.get(index);
+    }
+    public Vertex get_object_vertex(int index)
+    {
+        return list_of_object_vert.get(index);
     }
     public Edge get_edge(int index){
         return list_of_edges.get(index);
@@ -51,6 +60,9 @@ class BasicGraphRepr{
     public int get_amount_of_vertices(){
         return list_of_vertices.size(); 
     }
+    public int get_amount_of_object_vertices(){
+        return list_of_object_vert.size(); 
+    }
     public int get_amount_of_edges(){
         return list_of_edges.size(); 
     }
@@ -59,6 +71,9 @@ class BasicGraphRepr{
     }
     public ArrayList<Integer> get_list_of_vertices(){
         return list_of_vertices; 
+    }
+    public ArrayList<Vertex> get_list_of_object_vertices(){
+        return list_of_object_vert; 
     }
     public void setHamCycle(int cycle[]){
             hamCycle = cycle; 
@@ -76,11 +91,28 @@ class BasicGraphRepr{
             System.out.printf("%d %d\n", edge.get_v(0) + 1, edge.get_v(1) + 1);
         }
     }
+    public void print_object_edges()
+    {
+        System.out.println("---------------------EDGES-------------------");
+        for (Edge edge: list_of_edges)
+        {
+            edge.print_edge();
+        }
+    }
     public void print_vertices(){
         System.out.println("---------------------VERTICES-------------------");
         for (Integer vertex: list_of_vertices){
             System.out.printf("%d\n", vertex + 1);
         }
+    }
+    public void print_object_vertices()
+    {
+        System.out.println("---------------------VERTICES-------------------");
+        for (Vertex vertex: list_of_object_vert){
+            vertex.print_vertex();
+        }
+    
+    
     }
 
     public void del_edge(int v1,int v2)

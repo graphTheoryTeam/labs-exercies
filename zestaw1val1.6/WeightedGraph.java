@@ -147,5 +147,55 @@ public int[][] Dijkstra(int k)
         }
     
     }
+void get_middle_vertex() {
+        int rad = 999999;
+        int diam = 0;
+        int[] e = new int[this.get_vertices_number()];
+        ArrayList c = new ArrayList();
+        for (int i = 0; i < this.get_vertices_number(); i++) {
+            for (int j = 0; j < this.get_vertices_number(); j++) {
+                e[i] = Math.max(e[i], distance_matrix[i][j]);
+            }
+        }
+
+        for (int i = 0; i < this.get_vertices_number(); i++) {
+            rad = Math.min(rad, e[i]);
+            diam = Math.max(diam, e[i]);
+        }
+
+        for (int i = 0; i < this.get_vertices_number(); i++) {
+            if (e[i] == rad) {
+                c.add(i);
+            }
+        }
+        System.out.println("Middle vertex(es):");
+        System.out.println(c.toString());
+
+    }
+
+    void get_minimax_vortex() {
+        int tmp = 99999;
+        int[] e = new int[this.get_vertices_number()];
+        ArrayList c = new ArrayList();
+        for (int i = 0; i < this.get_vertices_number(); i++) {
+            for (int j = 0; j < this.get_vertices_number(); j++) {
+                e[i] = Math.max(e[i], distance_matrix[i][j]);
+            }
+        }
+
+        for (int i = 0; i < this.get_vertices_number(); i++) {
+            tmp = Math.min(tmp, e[i]);
+
+        }
+
+        for (int i = 0; i < this.get_vertices_number(); i++) {
+            if (e[i] == tmp) {
+                c.add(i);
+            }
+        }
+        System.out.println("minimax vertex(es):");
+        System.out.println(c.toString());
+
+    }
 
 }
